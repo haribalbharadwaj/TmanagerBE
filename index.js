@@ -11,7 +11,15 @@ const verifyToken = require('./src/middleware/verifyToken');
 
 dotenv.config();
 
-app.use(cors());
+const corsOptions = {
+    origin: 'https://tmanager-fe.vercel.app',  // Your frontend's deployed domain
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,  // Enable cookies and other credentials in requests
+    allowedHeaders: 'Content-Type, Authorization'  // Adjust based on your headers
+  };
+  
+  // Enable CORS with these options
+  app.use(cors(corsOptions));
 
 // Middleware for JSON and URL encoding
 app.use(express.json());
